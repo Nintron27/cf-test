@@ -1,6 +1,9 @@
 import type { PageServerLoad } from "./$types";
 
+import { installPolyfills } from "@sveltejs/kit/node/polyfills";
+
 export const load = (async () => {
+    installPolyfills();
     // if (performance) {
     //     let requestStartTime = new Date().getTime();
 
@@ -26,7 +29,7 @@ export const load = (async () => {
     // }
 
     return {
-        "ohYEAH": performance.now()
+        "ohYEAH": crypto.randomUUID()
     }
 
 }) satisfies PageServerLoad;
