@@ -28,7 +28,7 @@
 			<li aria-current={$page.url.pathname === '/test' ? 'page' : undefined}>
 				<a href="/test">Test</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/test' ? 'page' : undefined}>
+			<li aria-current={$page.url.pathname === '/random' ? 'page' : undefined}>
 				<a href="/random">Random</a>
 			</li>
 		</ul>

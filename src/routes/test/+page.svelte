@@ -5,4 +5,4 @@
 </script>
 
 <h1>Hello big test</h1>
-<p>{JSON.stringify(data)}</p>
+<p>{data.status}</p>
