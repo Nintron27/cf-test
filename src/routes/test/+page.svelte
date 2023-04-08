@@ -5,4 +5,6 @@
 </script>
 
 <h1>Hello big test</h1>
-<p>{data.status}</p>
+<p>deserialize time: {data.deserializeTime}</p>
+<p>request time: {data.requestTime}</p>
+<p>json: {data.json}</p>
