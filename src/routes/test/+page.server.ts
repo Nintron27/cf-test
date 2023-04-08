@@ -2,21 +2,27 @@ import type { PageServerLoad } from "./$types";
 
 
 export const load = (async () => {
-    let requestStartTime = new Date().getTime();
+    if (performance) {
+        let requestStartTime = new Date().getTime();
 
-    let response = await fetch("https://catfact.ninja/fact");
+        let response = await fetch("https://catfact.ninja/fact");
+        
+        let requestTime =  new Date().getTime() - requestStartTime;
     
-    let requestTime =  new Date().getTime() - requestStartTime;
-
-    let deserializeStartTime = new Date().getTime();
-
-    let json = await response.json();
-
-    let deserializeTime =  new Date().getTime() - deserializeStartTime;
+        let deserializeStartTime = new Date().getTime();
     
-    return { 
-        "json": json, 
-        "requestTime": requestTime, 
-        "deserializeTime": deserializeTime 
-    };
+        let json = await response.json();
+    
+        let deserializeTime =  new Date().getTime() - deserializeStartTime;
+       
+        return { 
+            "json": json, 
+            "requestTime": requestTime, 
+            "deserializeTime": deserializeTime 
+        };
+    } else {
+        return {
+            "status": "NOPE"
+        }
+    }
 }) satisfies PageServerLoad;
