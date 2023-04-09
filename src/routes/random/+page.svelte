@@ -1,6 +1,4 @@
 <script lang="ts">
-	export const csr = false;
-
 	let func = () => {
 		console.log('HELLO');
 		return Math.random();

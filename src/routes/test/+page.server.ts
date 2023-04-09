@@ -1,28 +1,32 @@
-import type { PageServerLoad } from "./$types";
-
+import { shopifyApi, LATEST_API_VERSION } from '@shopify/shopify-api';
+import type { PageServerLoad } from './$types';
+import '@shopify/shopify-api/adapters/cf-worker';
 
 export const load = (async () => {
-    if (performance) {
-        let requestStartTime = new Date().getTime();
+	const shopify = shopifyApi({
+		apiKey: 'APIKeyFromPartnersDashboard',
+		apiSecretKey: 'APISecretFromPartnersDashboard',
+		scopes: ['read_products'],
+		hostName: 'ngrok-tunnel-address',
+		apiVersion: LATEST_API_VERSION,
+		isEmbeddedApp: false
+	});
 
-        let response = await fetch("https://catfact.ninja/fact");
-        
-        let requestTime =  new Date().getTime() - requestStartTime;
-    
-        let deserializeStartTime = new Date().getTime();
-    
-        let json = await response.json();
-    
-        let deserializeTime =  new Date().getTime() - deserializeStartTime;
-       
-        return { 
-            "json": json, 
-            "requestTime": requestTime, 
-            "deserializeTime": deserializeTime 
-        };
-    } else {
-        return {
-            "status": "NOPE"
-        }
-    }
+	let requestStartTime = new Date().getTime();
+
+	let response = await fetch('https://catfact.ninja/fact');
+
+	let requestTime = new Date().getTime() - requestStartTime;
+
+	let deserializeStartTime = new Date().getTime();
+
+	let json = await response.json();
+
+	let deserializeTime = new Date().getTime() - deserializeStartTime;
+
+	return {
+		json: json,
+		requestTime: requestTime,
+		deserializeTime: deserializeTime
+	};
 }) satisfies PageServerLoad;

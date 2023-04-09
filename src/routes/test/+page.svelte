@@ -5,10 +5,6 @@
 </script>
 
 <h1>Hello big test</h1>
-{#if data.json}
-	<p>deserialize time: {data.deserializeTime}</p>
-	<p>request time: {data.requestTime}</p>
-	<p>json: {data.json}</p>
-{:else if data.status}
-	<p>Thats a big nope papi</p>
-{/if}
+<p>deserialize time: {data.deserializeTime}</p>
+<p>request time: {data.requestTime}</p>
+<p>json: {data.json}</p>
