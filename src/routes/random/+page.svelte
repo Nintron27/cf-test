@@ -1,5 +1,4 @@
 <script lang="ts">
-	export const ssr = false;
 	let random = Math.random();
 
 	let perfNow = performance.now();
